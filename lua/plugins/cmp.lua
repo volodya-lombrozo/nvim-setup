@@ -20,27 +20,34 @@ return {
           end,
         },
         mapping = cmp.mapping.preset.insert({
-          ["<C-Space>"] = cmp.mapping.complete(),
-          ["<CR>"] = cmp.mapping.confirm({ select = true }),
-          ["<Tab>"] = cmp.mapping(function(fallback)
+            ["<C-Space>"] = cmp.mapping.complete(),
+            ["<CR>"] = cmp.mapping.confirm({ select = true }),
+            ['<C-k>'] = cmp.mapping(function(fallback)
+                if not cmp.visible() then
+                    vim.lsp.buf.signature_help()
+                else
+                    fallback()
+                end
+            end, { "i", "s"}),          
+            ["<Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
-              cmp.select_next_item()
+                cmp.select_next_item()
             elseif luasnip.expand_or_jumpable() then
-              luasnip.expand_or_jump()
+                luasnip.expand_or_jump()
             else
-              fallback()
+                fallback()
             end
-          end, { "i", "s" }),
-          ["<S-Tab>"] = cmp.mapping(function(fallback)
+        end, { "i", "s" }),
+        ["<S-Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
-              cmp.select_prev_item()
+                cmp.select_prev_item()
             elseif luasnip.jumpable(-1) then
-              luasnip.jump(-1)
+                luasnip.jump(-1)
             else
-              fallback()
+                fallback()
             end
-          end, { "i", "s" }),
-        }),
+        end, { "i", "s" }),
+    }),
         sources = cmp.config.sources({
           { name = "nvim_lsp" },
           { name = "luasnip" },
