@@ -6,6 +6,7 @@ vim.keymap.set('n', '<leader>fh', builtin.help_tags, { desc = 'Telescope help ta
 vim.keymap.set('n', '<leader>gf', builtin.git_files, {})
 vim.keymap.set('n', '<leader>gd', ':Telescope lsp_definitions<CR>', {})
 vim.keymap.set('n', '<leader>gr', ':Telescope lsp_references<CR>', {})
+vim.keymap.set('n', '<leader>gi', builtin.lsp_implementations, {})
 vim.keymap.set('n', '<leader>ps', function()
 	builtin.grep_string({ search = vim.fn.input("grep > ") })
 end)
