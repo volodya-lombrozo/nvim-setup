@@ -10,6 +10,11 @@ return {
     lspconfig.gopls.setup({
       capabilities = capabilities,
     })
+
+    -- Set up groovyls for Groovy
+    lspconfig.groovyls.setup({
+      cmd = { "java", "-jar", "/Users/lombrozo/Workspace/OpenSource/groovy-language-server/build/libs/groovy-language-server-all.jar" },
+    })
   end
 }
 
