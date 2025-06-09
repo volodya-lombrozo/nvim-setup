@@ -8,5 +8,7 @@ vim.keymap.set("n", "<S-Tab>", "<C-^>", { noremap = true, silent = true, desc = 
 vim.keymap.set("v", "<C-c>", "\"+y", {  desc = "Copy to clipboard" })
 vim.keymap.set("v", "<C-v>", "\"+p", {  desc = "Past from clipboard" })
 vim.keymap.set("n", "<leader>y", ":%y<CR>", {  desc = "Yank the entire file" })
+vim.keymap.set("v", "<leader>y", ":%y<CR>", {  desc = "Yank the entire file" })
 vim.keymap.set("n", "<leader>Y", ":%y+<CR>", {  desc = "Yank the entire file to the system clipboard" })
+vim.keymap.set("v", "<leader>Y", ":%y+<CR>", {  desc = "Yank the entire file to the system clipboard" })
 
