@@ -29,10 +29,19 @@ return {
                     system_prompt = require("gp.defaults").code_system_prompt, 
                 }, 
             }, 
-
+            hooks = {
+                UnitTests = function(gp, params)
+                    local template = "I have the following c from {{filename}}:\n\n"
+                    .. "```{{filetype}}\n{{selection}}\n```\n\n"
+                    .. "Please respond by writing table driven unit tests for the code above."
+                    -- local agent = gp.get_command_agent()
+                    local agent = gp.get_command_agent("CodeCopilot")
+                    gp.Prompt(params, gp.Target.vnew, agent, template)
+                end,
+            },
         }
         require("gp").setup(conf)
 
-        -- Setup shortcuts here (see Usage > Shortcuts in the Documentation/Readme)
+        vim.keymap.set("v", "<leader>gt", ":<C-u>'<,'>GpUnitTests<cr>", {desc="Generate unit tests for selection"})
     end,
 }
