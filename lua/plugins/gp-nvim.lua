@@ -31,9 +31,26 @@ return {
             }, 
             hooks = {
                 UnitTests = function(gp, params)
-                    local template = "I have the following c from {{filename}}:\n\n"
-                    .. "```{{filetype}}\n{{selection}}\n```\n\n"
-                    .. "Please respond by writing table driven unit tests for the code above."
+                    local filetype = vim.bo.filetype
+                    local template 
+                    if filetype == "go" then
+                        template = [[
+I have the following Go function from {{filename}}:
+
+```go
+{{selection}}
+```
+Please write a set of unit tests for this function using the testing package and the testify library (require assertions).
+
+Create separate test functions for at least one positive and one negative case.
+Use meaningful test function names.
+Import "github.com/stretchr/testify/require".
+]]
+                    else
+                        template = "I have the following c from {{filename}}:\n\n"
+                        .. "```{{filetype}}\n{{selection}}\n```\n\n"
+                        .. "Please respond by writing table driven unit tests for the code above."
+                    end
                     -- local agent = gp.get_command_agent()
                     local agent = gp.get_command_agent("CodeCopilot")
                     gp.Prompt(params, gp.Target.vnew, agent, template)
