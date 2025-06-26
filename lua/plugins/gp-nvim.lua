@@ -44,7 +44,9 @@ return {
                         .. "Use clear and descriptive test function names that indicate the behavior being tested.\n"
                         .. "Import \"github.com/stretchr/testify/require\".\n"
                         .. "Import \"github.com/stretchr/testify/assert\".\n"
-                        .. "Assume the tests are written in the same package (do not use the '_test' package suffix)."
+                        .. "Assume the tests are written in the same package (do not use the '_test' package suffix).\n"
+                        .. "Use single word names for variables in tests.\n"
+                        .. "Use 't.TempDir()' to create temporary directories.\n"
                     else
                         template = "I have the following c from {{filename}}:\n\n"
                         .. "```{{filetype}}\n{{selection}}\n```\n\n"
@@ -75,11 +77,23 @@ return {
                     ) 
                 end, 
 
+                Proofread = function(gp, params)
+                    template = "Please review the following text for grammar, spelling, and fluency.\n"
+                    .. "Make improvements where necessary so it sounds natural and clear.\n"
+                    .. "Ensure the style is appropriate for technical writing.\n" 
+                    .. "Respond only with the improved version.\n\n"
+                    .. "Text:\n\n"
+                    .. "{{selection}}\n"
+                    local agent = gp.get_command_agent("CodeCopilot")
+                    gp.Prompt(params, gp.Target.vnew, agent, template)
+                end,
+
             },
         }
         require("gp").setup(conf)
 
         vim.keymap.set("v", "<leader>gt", ":<C-u>'<,'>GpUnitTests<cr>", {desc="Generate unit tests for selection"})
         vim.keymap.set("v", "<leader>gi", ":<C-u>'<,'>GpImplement<cr>", {desc="Generate implementation"})
+        vim.keymap.set("v", "<leader>gp", ":<C-u>'<,'>GpProofread<cr>", {desc="Find and correct mistakes in text before it is printed"})
     end,
 }
