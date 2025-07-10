@@ -17,4 +17,3 @@ vim.keymap.set("n", "<leader>tf", function() require("neotest").run.run(vim.fn.e
 vim.keymap.set("n", "<leader>to", function() require("neotest").output.open({ enter = true }) end)
 vim.keymap.set("n", "<leader>ta", function() require("neotest").run.run(vim.fn.getcwd()) end, { desc = "Run all tests in the project" })
 vim.keymap.set("n", "<leader>lf", function() vim.lsp.buf.format({ async = false }) end, { buffer = bufnr, desc = "Format file with LSP" })
-

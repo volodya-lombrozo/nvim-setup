@@ -88,6 +88,32 @@ return {
                     gp.Prompt(params, gp.Target.vnew, agent, template)
                 end,
 
+                FixLints = function(gp, params)
+                    local diagnostics = vim.diagnostic.get(0)
+                    if #diagnostics == 0 then
+                        print("No diagnostics found.")
+                        return
+                    end
+
+                    local lines = {}
+                    for _, d in ipairs(diagnostics) do
+                        local msg = string.format("Line %d, Col %d: %s", d.lnum + 1, d.col + 1, d.message)
+                        table.insert(lines, msg)
+                    end
+
+                    local diag_output = table.concat(lines, "\n")
+                    local file_contents = table.concat(vim.api.nvim_buf_get_lines(0, 0, -1, false), "\n")
+
+                    local template = "Please help me fix lint issues in this file.\n\n"
+                    .. "File content:\n"
+                    .. "```{{filetype}}\n" .. file_contents .. "\n```\n\n"
+                    .. "Linter output:\n"
+                    .. "```\n" .. diag_output .. "\n```"
+
+                    local agent = gp.get_command_agent("CodeCopilot")
+                    gp.Prompt(params, gp.Target.vnew, agent, template)
+                end,
+
             },
         }
         require("gp").setup(conf)
@@ -95,5 +121,6 @@ return {
         vim.keymap.set("v", "<leader>gt", ":<C-u>'<,'>GpUnitTests<cr>", {desc="Generate unit tests for selection"})
         vim.keymap.set("v", "<leader>gi", ":<C-u>'<,'>GpImplement<cr>", {desc="Generate implementation"})
         vim.keymap.set("v", "<leader>gp", ":<C-u>'<,'>GpProofread<cr>", {desc="Find and correct mistakes in text before it is printed"})
+        vim.keymap.set("n", "<leader>gl", ":GpFixLints<cr>", { desc = "Send lint output to AI" }) 
     end,
 }
