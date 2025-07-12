@@ -45,6 +45,7 @@ return {
                         .. "Import \"github.com/stretchr/testify/require\".\n"
                         .. "Import \"github.com/stretchr/testify/assert\".\n"
                         .. "Assume the tests are written in the same package (do not use the '_test' package suffix).\n"
+                        .. "Do not test inner methods of structs, only the public methods.\n"
                         .. "Use single word names for variables in tests.\n"
                         .. "Use 't.TempDir()' to create temporary directories.\n"
                     else
