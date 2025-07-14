@@ -7,12 +7,13 @@ return {
     "nvim-treesitter/nvim-treesitter",
     { "fredrikaverpil/neotest-golang", version = "*" },
   },
-  config = function()
-      local neotest_golang_opts = {}  -- Specify custom configuration
-      require("neotest").setup({
-        adapters = {
-          require("neotest-golang")(neotest_golang_opts), -- Registration
-        },
-      })
+    config = function()
+        local neotest_golang_opts = {}  -- Specify custom configuration
+        require("neotest").setup({
+            adapters = {
+                require("neotest-golang")(neotest_golang_opts), -- Registration
+            },
+            output = { enabled = true, open_on_run = false },
+        })
     end,
 }

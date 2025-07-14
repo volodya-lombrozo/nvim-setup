@@ -12,7 +12,7 @@ vim.keymap.set("v", "<leader>y", ":%y<CR>", {  desc = "Yank the entire file" })
 vim.keymap.set("n", "<leader>Y", ":%y+<CR>", {  desc = "Yank the entire file to the system clipboard" })
 vim.keymap.set("v", "<leader>Y", ":%y+<CR>", {  desc = "Yank the entire file to the system clipboard" })
 
-vim.keymap.set("n", "<leader>tn", function() require("neotest").run.run() end)
+vim.keymap.set("n", "<leader>tt", function() require("neotest").run.run() end)
 vim.keymap.set("n", "<leader>tf", function() require("neotest").run.run(vim.fn.expand("%")) end)
 vim.keymap.set("n", "<leader>to", function() require("neotest").output.open({ enter = true }) end)
 vim.keymap.set("n", "<leader>ta", function() require("neotest").run.run(vim.fn.getcwd()) end, { desc = "Run all tests in the project" })
