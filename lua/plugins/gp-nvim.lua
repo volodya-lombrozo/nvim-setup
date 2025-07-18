@@ -115,6 +115,53 @@ return {
                     gp.Prompt(params, gp.Target.vnew, agent, template)
                 end,
 
+                FixTests = function(gp, params)
+                    -- 1. Collect test output from Neotest (assumes output is in virtual text or messages)
+                    local neotest_ns = vim.api.nvim_get_namespaces()["neotest"]
+                    local bufnr = vim.api.nvim_get_current_buf()
+                    local lines = vim.api.nvim_buf_get_lines(bufnr, 0, -1, false)
+
+                    -- local neotest = require("neotest")
+                    -- results = neotest.run.get_last_results()
+                    local diags = vim.diagnostic.get(bufnr, { namespace = ns })
+                    print("Neotest diagnostics: " .. vim.inspect(diags))
+
+                    print("Neotest namespace ID: " .. tostring(neotest_ns))
+                    print("Current buffer number: " .. tostring(bufnr))
+                    print("Total lines in buffer: " .. tostring(#lines))
+                    -- print("Neotest results: " .. vim.inspect(results))
+                    -- Collect virtual text diagnostics that Neotest overlays
+                    local errors = {}
+                    for lnum = 0, #lines - 1 do
+                        local virt_text = vim.api.nvim_buf_get_extmarks(bufnr, neotest_ns, {lnum, 0}, {lnum, -1}, { details = true, type = "virt_text" })
+                        for _, mark in ipairs(virt_text) do
+                            local chunks = mark[4].virt_text or {}
+                            for _, chunk in ipairs(chunks) do
+                                table.insert(errors, string.format("Line %d: %s", lnum + 1, chunk[1]))
+                            end
+                        end
+                    end
+
+                    if #errors == 0 then
+                        print("No test errors found from Neotest.")
+                        return
+                    end
+
+                    local diagnostics_str = table.concat(errors, "\n")
+                    local file_contents = table.concat(lines, "\n")
+
+                    local template = "I have the following test code from {{filename}}:\n\n"
+                    .. "```\n" .. file_contents .. "\n```\n\n"
+                    .. "The following are the test errors reported by my test runner:\n"
+                    .. "```\n" .. diagnostics_str .. "\n```\n\n"
+                    .. "Please adjust the tests to make them pass.\n"
+                    .. "Fix only the test functions, not the implementation.\n"
+                    .. "Respond with the modified test code only."
+
+                    local agent = gp.get_command_agent("CodeCopilot")
+                    gp.Prompt(params, gp.Target.vnew, agent, template)
+                end,
+
             },
         }
         require("gp").setup(conf)
@@ -122,6 +169,7 @@ return {
         vim.keymap.set("v", "<leader>gt", ":<C-u>'<,'>GpUnitTests<cr>", {desc="Generate unit tests for selection"})
         vim.keymap.set("v", "<leader>gi", ":<C-u>'<,'>GpImplement<cr>", {desc="Generate implementation"})
         vim.keymap.set("v", "<leader>gp", ":<C-u>'<,'>GpProofread<cr>", {desc="Find and correct mistakes in text before it is printed"})
+        vim.keymap.set("n", "<leader>gf", ":GpFixTests<cr>", { desc = "Fix failing tests using AI" })
         vim.keymap.set("n", "<leader>gl", ":GpFixLints<cr>", { desc = "Send lint output to AI" }) 
     end,
 }
