@@ -26,3 +26,8 @@ vim.keymap.set("n", "<leader>oo", function()
   })
 end, { desc = "Format and organize imports" })
 
+vim.keymap.set("n", "<leader>rr", function()
+  vim.cmd("w") -- Save the file
+  vim.cmd("!echo '' && go run %")
+end, { desc = "Run Go file" })
+
