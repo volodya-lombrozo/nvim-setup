@@ -116,7 +116,18 @@ return {
                     end
 
                     local diag_output = table.concat(lines, "\n")
-                    local file_contents = table.concat(vim.api.nvim_buf_get_lines(0, 0, -1, false), "\n")
+                    
+                    -- Extract code to fix
+                    -- local file_contents = table.concat(vim.api.nvim_buf_get_lines(0, 0, -1, false), "\n")
+                    local file_contents
+                    if params.range ~= 0 then
+                        local start_line = vim.fn.line("'<")
+                        local end_line = vim.fn.line("'>")
+                        local selected_lines = vim.api.nvim_buf_get_lines(0, start_line - 1, end_line, false)
+                        file_contents = table.concat(selected_lines, "\n")
+                    else
+                        file_contents = table.concat(vim.api.nvim_buf_get_lines(0, 0, -1, false), "\n")
+                    end
 
                     local template = "Please help me fix lint issues in this file.\n\n"
                     .. "File content:\n"
@@ -138,7 +149,6 @@ return {
                     -- results = neotest.run.get_last_results()
                     local diags = vim.diagnostic.get(bufnr, { namespace = ns })
                     print("Neotest diagnostics: " .. vim.inspect(diags))
-
                     print("Neotest namespace ID: " .. tostring(neotest_ns))
                     print("Current buffer number: " .. tostring(bufnr))
                     print("Total lines in buffer: " .. tostring(#lines))
@@ -184,6 +194,7 @@ return {
         vim.keymap.set("v", "<leader>gi", ":<C-u>'<,'>GpImplement<cr>", {desc="Generate implementation"})
         vim.keymap.set("v", "<leader>gp", ":<C-u>'<,'>GpProofread<cr>", {desc="Find and correct mistakes in text before it is printed"})
         vim.keymap.set("n", "<leader>gf", ":GpFixTests<cr>", { desc = "Fix failing tests using AI" })
-        vim.keymap.set("n", "<leader>gl", ":GpFixLints<cr>", { desc = "Send lint output to AI" }) 
+        vim.keymap.set("v", "<leader>gl", ":<C-u>'<,'>GpFixLints<cr>", { desc = "Send lint output to AI to fix selected text" }) 
+        vim.keymap.set("n", "<leader>gl", ":GpFixLints<cr>", { desc = "Send lint output to AI and fix the entire file" }) 
     end,
 }
