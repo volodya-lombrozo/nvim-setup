@@ -32,12 +32,25 @@ return {
             hooks = {
                 UnitTests = function(gp, params)
                     local filetype = vim.bo.filetype
-                    local template 
+                    local filename = vim.fn.expand("%:t")
+                    local file_contents = table.concat(vim.api.nvim_buf_get_lines(0, 0, -1, false), "\n")
+
+                    local selection = ""
+                    if params.range ~= 0 then
+                        -- Visual selection detected; extract selected lines using range
+                        local start_line = vim.fn.line("'<")
+                        local end_line = vim.fn.line("'>")
+                        local lines = vim.api.nvim_buf_get_lines(0, start_line - 1, end_line, false)
+                        selection = table.concat(lines, "\n")
+                    end
+
+                    local code_to_test = (selection ~= "") and selection or file_contents
+                    local template
                     if filetype == "go" then
                         template = ""
                         .. "I have the following Go code from {{filename}}:\n\n"
                         .. "```go\n"
-                        .. "{{selection}}\n"
+                        .. code_to_test .. "\n"
                         .. "```\n"
                         .. "Please write a comprehensive set of unit tests for this code using the Go testing package and the testify library (use 'assert' and 'require').\n\n"
                         .. "Focus on achieving high code coverage by testing all significant code paths, including edge cases and branching logic.\n"
@@ -167,6 +180,7 @@ return {
         require("gp").setup(conf)
 
         vim.keymap.set("v", "<leader>gt", ":<C-u>'<,'>GpUnitTests<cr>", {desc="Generate unit tests for selection"})
+        vim.keymap.set("n", "<leader>gt", ":<C-u>GpUnitTests<cr>", {desc="Generate unit tests"})
         vim.keymap.set("v", "<leader>gi", ":<C-u>'<,'>GpImplement<cr>", {desc="Generate implementation"})
         vim.keymap.set("v", "<leader>gp", ":<C-u>'<,'>GpProofread<cr>", {desc="Find and correct mistakes in text before it is printed"})
         vim.keymap.set("n", "<leader>gf", ":GpFixTests<cr>", { desc = "Fix failing tests using AI" })
