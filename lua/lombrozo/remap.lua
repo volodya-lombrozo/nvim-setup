@@ -31,3 +31,7 @@ vim.keymap.set("n", "<leader>rr", function()
   vim.cmd("!echo '' && go run %")
 end, { desc = "Run Go file" })
 
+vim.keymap.set('n', '<C-j>', '<Plug>MoveLineDown', {})
+vim.keymap.set('n', '<C-k>', '<Plug>MoveLineUp', {})
+vim.keymap.set('v', '<C-j>', '<Plug>MoveBlockDown', {})
+vim.keymap.set('v', '<C-k>', '<Plug>MoveBlockUp', {})
