@@ -14,6 +14,7 @@ return {
             local luasnip = require("luasnip")
 
             cmp.setup({
+                preselect = cmp.PreselectMode.None,
                 snippet = {
                     expand = function(args)
                         luasnip.lsp_expand(args.body)
@@ -21,7 +22,7 @@ return {
                 },
                 mapping = cmp.mapping.preset.insert({
                     ["<C-Space>"] = cmp.mapping.complete(),
-                    ["<CR>"] = cmp.mapping.confirm({ select = true }),
+                    ["<CR>"] = cmp.mapping.confirm({ select = false }),
                     ['<C-k>'] = cmp.mapping(function(fallback)
                         if not cmp.visible() then
                             vim.lsp.buf.signature_help()
