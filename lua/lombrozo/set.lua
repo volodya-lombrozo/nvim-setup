@@ -15,3 +15,13 @@ vim.opt.updatetime = 750
 vim.opt.wrap = false
 
 vim.g.mapleader = " "
+
+
+vim.opt.cursorline = true
+vim.opt.cursorcolumn = true
+
+vim.api.nvim_create_autocmd("VimEnter", {
+  callback = function()
+    vim.cmd("highlight CursorLine ctermbg=238 guibg=#3a3a3a")
+  end,
+})
