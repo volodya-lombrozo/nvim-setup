@@ -21,8 +21,8 @@ return {
                     end,
                 },
                 mapping = cmp.mapping.preset.insert({
-                    ["<C-Space>"] = cmp.mapping.complete(),
                     ["<CR>"] = cmp.mapping.confirm({ select = false }),
+                    ["<C-Space>"] = cmp.mapping.complete(),
                     ['<C-k>'] = cmp.mapping(function(fallback)
                         if not cmp.visible() then
                             vim.lsp.buf.signature_help()
