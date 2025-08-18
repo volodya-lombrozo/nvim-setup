@@ -16,6 +16,9 @@ return {
             cmd = { "java", "-jar", "/Users/lombrozo/Workspace/OpenSource/groovy-language-server/build/libs/groovy-language-server-all.jar" },
         })
 
+        -- Set up tsserver for Lua 
+        lspconfig.lua_ls.setup{}
+
         -- solargraph for Ruby
         lspconfig.solargraph.setup({
             capabilities = capabilities,

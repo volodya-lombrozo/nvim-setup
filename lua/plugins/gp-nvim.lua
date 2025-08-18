@@ -102,6 +102,17 @@ return {
                     gp.Prompt(params, gp.Target.vnew, agent, template)
                 end,
 
+                Explain = function(gp, params)
+                    local template = "Please explain the following code in detail.\n"
+                    .. "Focus on the purpose of each function and how they interact.\n"
+                    .. "Respond with a clear and concise explanation.\n\n"
+                    .. "Use 80 characters per line.\n\n"
+                    .. "Code:\n\n"
+                    .. "{{selection}}\n"
+                    local agent = gp.get_command_agent("CodeCopilot")
+                    gp.Prompt(params, gp.Target.vnew, agent, template)
+                end,
+
                 FixLints = function(gp, params)
                     local diagnostics = vim.diagnostic.get(0)
                     if #diagnostics == 0 then
@@ -196,5 +207,8 @@ return {
         vim.keymap.set("n", "<leader>gf", ":GpFixTests<cr>", { desc = "Fix failing tests using AI" })
         vim.keymap.set("v", "<leader>gl", ":<C-u>'<,'>GpFixLints<cr>", { desc = "Send lint output to AI to fix selected text" }) 
         vim.keymap.set("n", "<leader>gl", ":GpFixLints<cr>", { desc = "Send lint output to AI and fix the entire file" }) 
+
+        vim.keymap.set("v", "<leader>ge", ":<C-u>'<,'>GpExplain<cr>", { desc = "Explain selected code" }) 
+        vim.keymap.set("n", "<leader>ge", ":GpExplain<cr>", { desc = "Explain the entire file" }) 
     end,
 }
