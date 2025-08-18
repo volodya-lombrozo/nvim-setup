@@ -9,7 +9,7 @@ vim.keymap.set("v", "<C-v>", "\"+p", {  desc = "Past from clipboard" })
 vim.keymap.set("n", "<leader>y", ":%y<CR>", {  desc = "Yank the entire file" })
 vim.keymap.set("v", "<leader>y", ":%y<CR>", {  desc = "Yank the entire file" })
 vim.keymap.set("n", "<leader>Y", ":%y+<CR>", {  desc = "Yank the entire file to the system clipboard" })
-vim.keymap.set("v", "<leader>Y", ":%y+<CR>", {  desc = "Yank the entire file to the system clipboard" })
+vim.keymap.set("v", "<leader>Y", '"+y', {  desc = "Yank selection to clipboard" })
 
 vim.keymap.set("i", "jk", "<Esc>", { noremap = true, silent = true, desc = "Exit insert mode with jk" })
 
@@ -36,3 +36,6 @@ vim.keymap.set('n', '<C-j>', '<Plug>MoveLineDown', {})
 vim.keymap.set('n', '<C-k>', '<Plug>MoveLineUp', {})
 vim.keymap.set('v', '<C-j>', '<Plug>MoveBlockDown', {})
 vim.keymap.set('v', '<C-k>', '<Plug>MoveBlockUp', {})
+
+vim.keymap.set("n", '<leader>ip', ':InspectTree<CR>', { desc = 'Inspect Treesitter Tree' })
+vim.keymap.set("n", '<leader>eq', ':EditQuery<CR>', { desc = 'Edit Treesitter Query' })
