@@ -39,3 +39,8 @@ vim.keymap.set('v', '<C-k>', '<Plug>MoveBlockUp', {})
 
 vim.keymap.set("n", '<leader>ip', ':InspectTree<CR>', { desc = 'Inspect Treesitter Tree' })
 vim.keymap.set("n", '<leader>eq', ':EditQuery<CR>', { desc = 'Edit Treesitter Query' })
+
+vim.keymap.set("n", "<leader>tl", function()
+  vim.cmd("e " .. vim.fn.stdpath("state") .. "/neotest.log")
+end, { desc = "Open Neotest log file" })
+
