@@ -12,8 +12,8 @@ return {
             -- { "zidhuss/neotest-minitest", branch = "main" },
             {
                 -- Use local path for neotest-minitest
-                dir = "~/Workspace/OpenSource/neotest-minitest",
-                name = "neotest-minitest",
+                dir = "~/Workspace/OpenSource/neotest-ruby-minitest",
+                name = "neotest-ruby-minitest",
                 -- optional: prevent Lazy from updating this plugin
                 dev = true,
             },
@@ -27,7 +27,10 @@ return {
                     require("neotest-golang")({
                         args = { "-v" }, 
                     }),
-                    require("neotest-minitest")({}),
+                    -- require("neotest-ruby-minitest")({}),
+                    require("neotest-ruby-minitest").setup({
+                        command = "ruby ruby ruby"
+                    }),
                     require("neotest-plenary")({
                         -- min_init = "tests/adapter/minimal_init.lua",
                         -- projects = {
