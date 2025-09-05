@@ -16,7 +16,14 @@ vim.keymap.set("i", "jk", "<Esc>", { noremap = true, silent = true, desc = "Exit
 vim.keymap.set("n", "<leader>tt", function() require("neotest").run.run() end)
 vim.keymap.set("n", "<leader>tf", function() require("neotest").run.run(vim.fn.expand("%")) end)
 vim.keymap.set("n", "<leader>to", function() require("neotest").output.open({ enter = true }) end)
-vim.keymap.set("n", "<leader>ta", function() require("neotest").run.run(vim.fn.getcwd()) end, { desc = "Run all tests in the project" })
+vim.keymap.set("n", "<leader>ta", function() require("neotest").run.run({ suite = true }) end, { desc = "Run all tests in the project" })
+vim.keymap.set("n", "<leader>td", function() require("neotest").run.run(vim.fn.expand("%:p:h")) end, { desc = "Run all tests in the directory" })
+-- vim.keymap.set("n", "<leader>td", function() require("neotest").run.run({suite = true, adapter = "neotest-ruby-minitest" }) end, { desc = "Run all tests in the directory" })
+
+vim.keymap.set("n", "<leader>rl", function() 
+    require("lazy.core.loader").reload("neotest-ruby-minitest") 
+    vim.notify("Reloaded neotest-ruby-minitest", vim.log.levels.INFO)
+end, { desc = "Reload neotest-ruby-minitest plugin" })
 
 vim.keymap.set("n", "<leader>lf", function() vim.lsp.buf.format({ async = false }) end, { buffer = bufnr, desc = "Format file with LSP" })
 vim.keymap.set("n", "<leader>oo", function()

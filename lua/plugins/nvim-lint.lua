@@ -4,6 +4,7 @@ return {
         local lint = require("lint")
         lint.linters_by_ft = {
             go = { "golangcilint" },
+            lua = { "luacheck" },
         }
         -- Define custom command
         vim.api.nvim_create_user_command("LintNow", function()

@@ -9,15 +9,13 @@ return {
             "nvim-neotest/neotest-plenary",
             "antoinemadec/FixCursorHold.nvim",
             "nvim-treesitter/nvim-treesitter",
-            -- { "zidhuss/neotest-minitest", branch = "main" },
             {
-                -- Use local path for neotest-minitest
                 dir = "~/Workspace/OpenSource/neotest-ruby-minitest",
                 name = "neotest-ruby-minitest",
-                -- optional: prevent Lazy from updating this plugin
                 dev = true,
+                ft = "ruby",
             },
-            { "fredrikaverpil/neotest-golang", version = "*" },
+            { "fredrikaverpil/neotest-golang", version = "*", ft = "go", },
         },
         config = function()
             -- Specify custom configuration
@@ -25,20 +23,10 @@ return {
                 log_level = "DEBUG",
                 adapters = {
                     require("neotest-golang")({
-                        args = { "-v" }, 
+                        args = { "-v" },
                     }),
-                    -- require("neotest-ruby-minitest")({}),
-                    require("neotest-ruby-minitest").setup({
-                        command = "ruby ruby ruby"
-                    }),
-                    require("neotest-plenary")({
-                        -- min_init = "tests/adapter/minimal_init.lua",
-                        -- projects = {
-                        --     ["~/Workspace/OpenSource/neotest-minitest"] = require("neotest-plenary")({
-                        --         min_init = "./tests/adapter/minimal_init.lua",
-                        --     }),
-                        -- },
-                    }),
+                    require("neotest-ruby-minitest"),
+                    require("neotest-plenary")({}),
                 },
                 output = { enabled = true, open_on_run = false },
             })
