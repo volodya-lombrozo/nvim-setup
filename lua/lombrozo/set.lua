@@ -25,3 +25,4 @@ vim.api.nvim_create_autocmd("VimEnter", {
     vim.cmd("highlight CursorLine ctermbg=238 guibg=#3a3a3a")
   end,
 })
+
