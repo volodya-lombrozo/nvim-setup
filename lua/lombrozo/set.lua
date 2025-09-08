@@ -21,8 +21,10 @@ vim.opt.cursorline = true
 vim.opt.cursorcolumn = true
 
 vim.api.nvim_create_autocmd("VimEnter", {
-  callback = function()
-    vim.cmd("highlight CursorLine ctermbg=238 guibg=#3a3a3a")
-  end,
+    callback = function()
+        -- vim.cmd("highlight CursorLine ctermbg=238 guibg=#3a3a3a")
+        -- vim.api.nvim_set_hl(0, "CursorLine", { bg = "#3a3a3a", fg = "#3a3a3a" })
+        vim.api.nvim_set_hl(0, "NormalFloat", { bg = "#3a3a3a" })
+        vim.api.nvim_set_hl(0, "Pmenu", { bg = "#3a3a3a", fg = "#c0caf5" })
+    end,
 })
-

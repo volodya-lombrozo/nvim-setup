@@ -18,7 +18,6 @@ return {
             { "fredrikaverpil/neotest-golang", version = "*", ft = "go", },
         },
         config = function()
-            -- Specify custom configuration
             require("neotest").setup({
                 log_level = "DEBUG",
                 adapters = {
