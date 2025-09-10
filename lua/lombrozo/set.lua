@@ -16,9 +16,11 @@ vim.opt.wrap = false
 
 vim.g.mapleader = " "
 
-
 vim.opt.cursorline = true
 vim.opt.cursorcolumn = true
+
+vim.opt.number = true
+vim.opt.relativenumber = true
 
 vim.api.nvim_create_autocmd("VimEnter", {
     callback = function()
