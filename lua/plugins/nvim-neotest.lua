@@ -1,7 +1,7 @@
 return {
     {
         "nvim-neotest/neotest",
-        version = "v5.9.1",
+        version = "v5.11.1",
         lazy = false,
         dependencies = {
             "nvim-neotest/nvim-nio",
@@ -9,13 +9,8 @@ return {
             "nvim-neotest/neotest-plenary",
             "antoinemadec/FixCursorHold.nvim",
             "nvim-treesitter/nvim-treesitter",
-            {
-                dir = "~/Workspace/OpenSource/neotest-ruby-minitest",
-                name = "neotest-ruby-minitest",
-                dev = true,
-                ft = "ruby",
-            },
-            { "fredrikaverpil/neotest-golang", version = "*", ft = "go", },
+            { dir = "~/Workspace/OpenSource/neotest-ruby-minitest", name = "neotest-ruby-minitest", dev = true, ft = "rb", },
+            { "fredrikaverpil/neotest-golang",                      branch = "main",             ft = "go", },
         },
         config = function()
             require("neotest").setup({
