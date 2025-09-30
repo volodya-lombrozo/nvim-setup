@@ -1,4 +1,6 @@
 return {
-  "matze/vim-move",
-  lazy = false,
+  {
+    "matze/vim-move",
+    lazy = false,
+  },
 }

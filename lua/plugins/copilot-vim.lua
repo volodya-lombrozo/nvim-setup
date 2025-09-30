@@ -1,5 +1,7 @@
 return {
-  "github/copilot.vim",
-  event = "InsertEnter",
-  enabled = false,
+  {
+    "github/copilot.vim",
+    event = "InsertEnter",
+    enabled = false,
+  },
 }
