@@ -3,4 +3,3 @@ return {
   event = "InsertEnter",
   enabled = false,
 }
-

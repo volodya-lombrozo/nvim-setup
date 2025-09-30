@@ -16,6 +16,6 @@ function send_lint_to_copilot()
 
   require("gp").chat({
     prompt = "Help me fix the issues in this file based on linter output.\n\nFile contents:\n"
-      .. file_contents .. "\n\nLinter output:\n" .. diag_output
+        .. file_contents .. "\n\nLinter output:\n" .. diag_output
   })
 end

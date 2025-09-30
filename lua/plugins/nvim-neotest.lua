@@ -8,9 +8,9 @@ return {
             "nvim-lua/plenary.nvim",
             "nvim-neotest/neotest-plenary",
             "antoinemadec/FixCursorHold.nvim",
-            "nvim-treesitter/nvim-treesitter",
+            { "nvim-treesitter/nvim-treesitter",                    branch = "main" },
             { dir = "~/Workspace/OpenSource/neotest-ruby-minitest", name = "neotest-ruby-minitest", dev = true, ft = "rb", },
-            { "fredrikaverpil/neotest-golang",                      branch = "main",             ft = "go", },
+            { "fredrikaverpil/neotest-golang",                      branch = "main",                ft = "go", },
         },
         config = function()
             require("neotest").setup({

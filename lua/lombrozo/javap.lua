@@ -6,4 +6,3 @@ vim.api.nvim_create_autocmd("BufReadPost", {
     vim.bo.filetype = "java" -- syntax highlighting for the output
   end
 })
-
