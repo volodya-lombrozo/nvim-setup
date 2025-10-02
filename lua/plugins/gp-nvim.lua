@@ -110,6 +110,19 @@ return {
             gp.Prompt(params, gp.Target.vnew, agent(gp), template)
           end,
 
+          Documentation = function(gp, params)
+            local selection = text_selection(params)
+            local template = "Please generate detailed documentation for the following code.\n"
+                .. "Include descriptions for each function, its parameters, return values, and any important details.\n"
+                .. "Use appropriate formatting for the target programming language.\n"
+                .. "Don't add documentation inside functions or methods.\n"
+                .. "Respond only with the documentation.\n\n"
+                .. "Code:\n\n"
+                .. selection
+                .. "\n"
+            gp.Prompt(params, gp.Target.vnew, agent(gp), template)
+          end,
+
           Explain = function(gp, params)
             local template = "Please explain the following code in detail.\n"
                 .. "Focus on the purpose of each function and how they interact.\n"
@@ -199,11 +212,13 @@ return {
       vim.keymap.set("v", "<leader>gp", ":<C-u>'<,'>GpProofread<cr>", { desc = "Find and correct mistakes in text" })
       vim.keymap.set("n", "<leader>gp", ":<C-u>GpProofread<cr>",
         { desc = "Find and correct mistakes in the entire text" })
+      vim.keymap.set("v", "<leader>dg", ":<C-u>'<,'>GpDocumentation<cr>",
+        { desc = "Generate documentation for selection" })
+      vim.keymap.set("n", "<leader>dg", ":<C-u>GpDocumentation<cr>", { desc = "Generate documentation for the entire file" })
       vim.keymap.set("n", "<leader>gf", ":GpFixTests<cr>", { desc = "Fix failing tests using AI" })
       vim.keymap.set("v", "<leader>gl", ":<C-u>'<,'>GpFixLints<cr>",
         { desc = "Send lint output to AI to fix selected text" })
       vim.keymap.set("n", "<leader>gl", ":GpFixLints<cr>", { desc = "Send lint output to AI and fix the entire file" })
-
       vim.keymap.set("v", "<leader>ge", ":<C-u>'<,'>GpExplain<cr>", { desc = "Explain selected code" })
       vim.keymap.set("n", "<leader>ge", ":GpExplain<cr>", { desc = "Explain the entire file" })
     end,
