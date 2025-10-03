@@ -48,3 +48,4 @@ vim.keymap.set("n", "<leader>tl", function()
   vim.cmd("e " .. vim.fn.stdpath("state") .. "/neotest.log")
 end, { desc = "Open Neotest log file" })
 
+vim.keymap.set("n", "<leader>va", "ggVG", { desc = "Select all" })
