@@ -41,7 +41,8 @@ return {
         'gopls',
         'lua_ls',
         'groovyls',
-        'solargraph'
+        'solargraph',
+        'jdtls'
       })
     end
   },

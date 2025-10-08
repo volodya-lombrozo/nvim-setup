@@ -9,6 +9,7 @@ return {
       "nvim-neotest/neotest-plenary",
       "antoinemadec/FixCursorHold.nvim",
       "nvim-treesitter/nvim-treesitter",
+      -- "volodya-lombrozo/neotest-ruby-minitest",
       { dir = "~/Workspace/OpenSource/neotest-ruby-minitest", name = "neotest-ruby-minitest", dev = true, ft = "rb", },
       { "fredrikaverpil/neotest-golang",                      version = "v1.15.1",                ft = "go", },
     },
