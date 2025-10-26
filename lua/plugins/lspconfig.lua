@@ -26,8 +26,8 @@ return {
       vim.lsp.config.solargraph = {
         cmd = { "solargraph", "stdio" },
         filetypes = { "ruby" },
+        capabilities = capabilities,
         settings = {
-          capabilities = capabilities,
           solargraph = {
             diagnostics = true,
             formatting = true,
