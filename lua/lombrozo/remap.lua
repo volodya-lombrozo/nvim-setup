@@ -44,10 +44,17 @@ vim.keymap.set("n", "<leader>rr", function()
   vim.cmd("!echo '' && go run %")
 end, { desc = "Run Go file" })
 
-vim.keymap.set('n', '<C-j>', '<Plug>MoveLineDown', {})
-vim.keymap.set('n', '<C-k>', '<Plug>MoveLineUp', {})
-vim.keymap.set('v', '<C-j>', '<Plug>MoveBlockDown', {})
-vim.keymap.set('v', '<C-k>', '<Plug>MoveBlockUp', {})
+-- Move lines up and down with Alt+J/K
+vim.keymap.set('n', '<S-j>', '<Plug>MoveLineDown', {})
+vim.keymap.set('v', '<S-j>', '<Plug>MoveBlockDown', {})
+vim.keymap.set('n', '<S-k>', '<Plug>MoveLineUp', {})
+vim.keymap.set('v', '<S-k>', '<Plug>MoveBlockUp', {})
+
+-- Navigate between windows using Ctrl+hjkl
+vim.keymap.set('n', '<C-h>', '<C-w>h', { desc = 'Move to left window' })
+vim.keymap.set('n', '<C-j>', '<C-w>j', { desc = 'Move to down window' })
+vim.keymap.set('n', '<C-k>', '<C-w>k', { desc = 'Move to up window' })
+vim.keymap.set('n', '<C-l>', '<C-w>l', { desc = 'Move to right window' })
 
 vim.keymap.set("n", '<leader>ip', ':InspectTree<CR>', { desc = 'Inspect Treesitter Tree' })
 vim.keymap.set("n", '<leader>eq', ':EditQuery<CR>', { desc = 'Edit Treesitter Query' })
