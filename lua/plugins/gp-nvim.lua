@@ -205,22 +205,22 @@ return {
         },
       }
       require("gp").setup(conf)
-
-      vim.keymap.set("v", "<leader>gt", ":<C-u>'<,'>GpUnitTests<cr>", { desc = "Generate unit tests for selection" })
-      vim.keymap.set("n", "<leader>gt", ":<C-u>GpUnitTests<cr>", { desc = "Generate unit tests" })
-      vim.keymap.set("v", "<leader>gi", ":<C-u>'<,'>GpImplement<cr>", { desc = "Generate implementation" })
-      vim.keymap.set("v", "<leader>gp", ":<C-u>'<,'>GpProofread<cr>", { desc = "Find and correct mistakes in text" })
-      vim.keymap.set("n", "<leader>gp", ":<C-u>GpProofread<cr>",
+      -- 'r' stands for 'robot'
+      vim.keymap.set("v", "<leader>rt", ":<C-u>'<,'>GpUnitTests<cr>", { desc = "Generate unit tests for selection" })
+      vim.keymap.set("n", "<leader>rt", ":<C-u>GpUnitTests<cr>", { desc = "Generate unit tests" })
+      vim.keymap.set("v", "<leader>ri", ":<C-u>'<,'>GpImplement<cr>", { desc = "Generate implementation" })
+      vim.keymap.set("v", "<leader>rp", ":<C-u>'<,'>GpProofread<cr>", { desc = "Find and correct mistakes in text" })
+      vim.keymap.set("n", "<leader>rp", ":<C-u>GpProofread<cr>",
         { desc = "Find and correct mistakes in the entire text" })
-      vim.keymap.set("v", "<leader>dg", ":<C-u>'<,'>GpDocumentation<cr>",
+      vim.keymap.set("v", "<leader>rd", ":<C-u>'<,'>GpDocumentation<cr>",
         { desc = "Generate documentation for selection" })
-      vim.keymap.set("n", "<leader>dg", ":<C-u>GpDocumentation<cr>", { desc = "Generate documentation for the entire file" })
-      vim.keymap.set("n", "<leader>gf", ":GpFixTests<cr>", { desc = "Fix failing tests using AI" })
-      vim.keymap.set("v", "<leader>gl", ":<C-u>'<,'>GpFixLints<cr>",
+      vim.keymap.set("n", "<leader>rd", ":<C-u>GpDocumentation<cr>", { desc = "Generate documentation for the entire file" })
+      vim.keymap.set("n", "<leader>rf", ":GpFixTests<cr>", { desc = "Fix failing tests using AI" })
+      vim.keymap.set("v", "<leader>rl", ":<C-u>'<,'>GpFixLints<cr>",
         { desc = "Send lint output to AI to fix selected text" })
-      vim.keymap.set("n", "<leader>gl", ":GpFixLints<cr>", { desc = "Send lint output to AI and fix the entire file" })
-      vim.keymap.set("v", "<leader>ge", ":<C-u>'<,'>GpExplain<cr>", { desc = "Explain selected code" })
-      vim.keymap.set("n", "<leader>ge", ":GpExplain<cr>", { desc = "Explain the entire file" })
+      vim.keymap.set("n", "<leader>rl", ":GpFixLints<cr>", { desc = "Send lint output to AI and fix the entire file" })
+      vim.keymap.set("v", "<leader>re", ":<C-u>'<,'>GpExplain<cr>", { desc = "Explain selected code" })
+      vim.keymap.set("n", "<leader>re", ":GpExplain<cr>", { desc = "Explain the entire file" })
     end,
   },
 }
