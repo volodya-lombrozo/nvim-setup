@@ -114,9 +114,11 @@ return {
             local selection = text_selection(params)
             local template = "Please generate detailed documentation for the following code.\n"
                 .. "Include descriptions for each function, its parameters, return values, and any important details.\n"
-                .. "Use appropriate formatting for the target programming language.\n"
-                .. "Don't add documentation inside functions or methods.\n"
-                .. "Respond only with the documentation.\n\n"
+                .. "Use appropriate formatting based on the target programming language.\n"
+                .. "Do not add documentation inside functions or methods.\n"
+                .. "Respond only with the same code, but enhanced with documentation.\n\n"
+                .. "The documentation format should be JavaDoc for Java, docstrings for Python, GoDoc for Go, "
+                .. "RDoc for Ruby, JSDoc for JavaScript/TypeScript, and Doxygen for C/C++.\n\n"
                 .. "Code:\n\n"
                 .. selection
                 .. "\n"
@@ -214,7 +216,8 @@ return {
         { desc = "Find and correct mistakes in the entire text" })
       vim.keymap.set("v", "<leader>rd", ":<C-u>'<,'>GpDocumentation<cr>",
         { desc = "Generate documentation for selection" })
-      vim.keymap.set("n", "<leader>rd", ":<C-u>GpDocumentation<cr>", { desc = "Generate documentation for the entire file" })
+      vim.keymap.set("n", "<leader>rd", ":<C-u>GpDocumentation<cr>",
+        { desc = "Generate documentation for the entire file" })
       vim.keymap.set("n", "<leader>rf", ":GpFixTests<cr>", { desc = "Fix failing tests using AI" })
       vim.keymap.set("v", "<leader>rl", ":<C-u>'<,'>GpFixLints<cr>",
         { desc = "Send lint output to AI to fix selected text" })
