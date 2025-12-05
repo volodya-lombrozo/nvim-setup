@@ -64,3 +64,9 @@ vim.keymap.set("n", "<leader>tl", function()
 end, { desc = "Open Neotest log file" })
 
 vim.keymap.set("n", "<leader>va", "ggVG", { desc = "Select all" })
+
+-- Lua (init.lua)
+vim.keymap.set('n', ']q', ':cnext<CR>', { silent = true })
+vim.keymap.set('n', '[q', ':cprev<CR>', { silent = true })
+vim.keymap.set('n', ']l', ':lnext<CR>', { silent = true })
+vim.keymap.set('n', '[l', ':lprev<CR>', { silent = true })
