@@ -1,7 +1,7 @@
 return {
   {
     "nvim-neotest/neotest",
-    version = "v5.11.1",
+    version = "v5.13.4",
     lazy = false,
     dependencies = {
       "nvim-neotest/nvim-nio",
@@ -9,7 +9,7 @@ return {
       "nvim-neotest/neotest-plenary",
       "antoinemadec/FixCursorHold.nvim",
       "nvim-treesitter/nvim-treesitter",
-      { "rcasia/neotest-java",                                ft = "java", dependencies = { "mfussenegger/nvim-jdtls" }, },
+      { "rcasia/neotest-java",                                version = "v0.22.22", ft = "java", dependencies = { "mfussenegger/nvim-jdtls" }, },
       { dir = "~/Workspace/OpenSource/neotest-ruby-minitest", name = "neotest-ruby-minitest", dev = true, ft = "rb", },
       { "fredrikaverpil/neotest-golang",                      version = "v1.15.1",            ft = "go", },
     },

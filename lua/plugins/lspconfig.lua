@@ -1,6 +1,7 @@
 return {
   {
     "neovim/nvim-lspconfig",
+    version = "v2.5.0",
     config = function()
       -- Make LSP completions work with nvim-cmp
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
