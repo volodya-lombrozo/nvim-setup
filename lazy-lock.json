@@ -13,7 +13,7 @@
   "lazydev.nvim": { "branch": "main", "commit": "5231c62aa83c2f8dc8e7ba957aa77098cda1257d" },
   "neotest": { "branch": "master", "commit": "deadfb1af5ce458742671ad3a013acb9a6b41178" },
   "neotest-golang": { "branch": "main", "commit": "ad6ae703e18874eb66fee539224eac2dd9cc0890" },
-  "neotest-java": { "branch": "main", "commit": "d3cd312ffa8ba204c7f9be6ee4a05adee0ff3b3c" },
+  "neotest-java": { "branch": "main", "commit": "363228cfc1fac0e99ed5983d19ae5ba430e698fb" },
   "neotest-plenary": { "branch": "master", "commit": "3523adcf9ffaad1911960c5813b0136c1b63a2ec" },
   "nvim-cmp": { "branch": "main", "commit": "d97d85e01339f01b842e6ec1502f639b080cb0fc" },
   "nvim-jdtls": { "branch": "master", "commit": "f73731b543f5971e0da9665eb1d7ceffe1fde71f" },
