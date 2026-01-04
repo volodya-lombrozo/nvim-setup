@@ -29,3 +29,5 @@ vim.api.nvim_create_autocmd("VimEnter", {
         vim.api.nvim_set_hl(0, "Visual", { bg = "#8a8a8a", fg = "NONE" })
     end,
 })
+
+vim.opt.colorcolumn = "80"
