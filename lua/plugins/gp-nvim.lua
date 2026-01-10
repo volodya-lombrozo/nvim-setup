@@ -112,7 +112,7 @@ return {
 
           Documentation = function(gp, params)
             local selection = text_selection(params)
-            local template = "Please generate detailed documentation for the following code.\n"
+            local template = "Please generate short and concise documentation for the following code.\n"
                 .. "Include descriptions for each function, its parameters, return values, and any important details.\n"
                 .. "Use appropriate formatting based on the target programming language.\n"
                 .. "Do not add documentation inside functions or methods.\n"
