@@ -6,7 +6,7 @@ return {
     },
     config = function()
       local function get_tree_width()
-        return math.max(25, math.min(50, vim.fn.winwidth(0) / 5))
+        return math.floor(math.max(25, math.min(50, vim.fn.winwidth(0) / 5)))
       end
 
       require("nvim-tree").setup({
