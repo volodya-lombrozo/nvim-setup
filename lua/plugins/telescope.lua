@@ -14,6 +14,7 @@ return {
       { "<leader>gd", "<cmd>Telescope lsp_definitions<CR>",                              desc = "LSP definitions" },
       { "<leader>gr", "<cmd>Telescope lsp_references<CR>",                               desc = "LSP references" },
       { "<leader>gi", function() require("telescope.builtin").lsp_implementations() end, desc = "LSP implementations" },
+      { "<leader>fo", function() require("telescope.builtin").oldfiles() end,            desc = "Telescope recent files" },
       {
         "<leader>ps",
         function()
