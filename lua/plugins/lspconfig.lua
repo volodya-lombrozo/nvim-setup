@@ -38,10 +38,23 @@ return {
           },
         }
       }
+      local formatter_path = vim.fn.stdpath("config") .. "/lua/plugins/eostyle.xml"
       vim.lsp.config.jdtls = {
         cmd = { "jdtls" },
         filetypes = { "java" },
         capabilities = capabilities,
+        settings = {
+          java = {
+            format = {
+              enabled = true,
+              settings = {
+                url = formatter_path,
+                profile = "eostyle",
+                profile_kind = "CodeFormatterProfileKind.XML",
+              }
+            },
+          },
+        },
       }
       vim.lsp.enable({
         'gopls',
