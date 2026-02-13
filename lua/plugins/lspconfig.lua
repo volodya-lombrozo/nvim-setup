@@ -5,6 +5,8 @@ return {
     config = function()
       -- Make LSP completions work with nvim-cmp
       local capabilities = require("cmp_nvim_lsp").default_capabilities()
+
+      -- Go --
       vim.lsp.config.gopls = {
         cmd = { "gopls" },
         filetypes = { "go", "gomod", "gowork", "gotmpl" },
@@ -12,11 +14,15 @@ return {
           capabilities = capabilities,
         },
       }
+
+      -- Lua --
       vim.lsp.config.lua_ls = {
         settings = {
           capabilities = capabilities,
         }
       }
+
+      -- Groovy --
       vim.lsp.config.groovyls = {
         cmd = { "java", "-jar", "/Users/lombrozo/Workspace/OpenSource/groovy-language-server/build/libs/groovy-language-server-all.jar" },
         filetypes = { "groovy" },
@@ -24,6 +30,8 @@ return {
           capabilities = capabilities,
         }
       }
+
+      -- Ruby --
       vim.lsp.config.solargraph = {
         cmd = { "solargraph", "stdio" },
         filetypes = { "ruby" },
@@ -38,6 +46,8 @@ return {
           },
         }
       }
+
+      -- Java --
       local formatter_path = vim.fn.stdpath("config") .. "/lua/plugins/eostyle.xml"
       vim.lsp.config.jdtls = {
         cmd = { "jdtls" },
@@ -56,12 +66,21 @@ return {
           },
         },
       }
+
+      -- JS --
+      vim.lsp.config.ts_ls = {
+        cmd = { "typescript-language-server", "--stdio" },
+        filetypes = { "javascript", "javascriptreact", "javascript.jsx" },
+        capabilities = capabilities,
+      }
+
       vim.lsp.enable({
         'gopls',
         'lua_ls',
         'groovyls',
         'solargraph',
-        'jdtls'
+        'jdtls',
+        'ts_ls'
       })
     end
   },
