@@ -12,6 +12,8 @@ return {
       { "rcasia/neotest-java",                                version = "v0.22.4", ft = "java", dependencies = { "mfussenegger/nvim-jdtls" }, },
       { dir = "~/Workspace/OpenSource/neotest-ruby-minitest", name = "neotest-ruby-minitest", dev = true, ft = "rb", },
       { "fredrikaverpil/neotest-golang",                      version = "v1.15.1",            ft = "go", },
+      -- Mocha adapter is currently broken
+      -- { "adrigzr/neotest-mocha", branch = "main" },
     },
     config = function()
       require("neotest").setup({
@@ -23,6 +25,7 @@ return {
           require("neotest-ruby-minitest"),
           require("neotest-plenary")({}),
           require("neotest-java")({}),
+          -- require("neotest-mocha")({}),
         },
         output = { enabled = true, open_on_run = false },
       })
