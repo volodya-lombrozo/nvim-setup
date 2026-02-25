@@ -72,6 +72,26 @@ return {
         cmd = { "typescript-language-server", "--stdio" },
         filetypes = { "javascript", "javascriptreact", "javascript.jsx" },
         capabilities = capabilities,
+        settings = {
+          typescript = {
+            format = {
+              enable = true,
+              indentSize = 2,
+              tabSize = 2,
+              insertSpaceAfterCommaDelimiter = true,
+              insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces = false,
+            }
+          },
+          javascript = {
+            format = {
+              enable = true,
+              indentSize = 2,
+              tabSize = 2,
+              insertSpaceAfterCommaDelimiter = true,
+              insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces = false,
+            }
+          }
+        }
       }
 
       vim.lsp.enable({
