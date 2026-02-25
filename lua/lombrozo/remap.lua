@@ -23,6 +23,15 @@ vim.keymap.set("n", "<leader>rl", function()
     vim.notify("Reloaded neotest-ruby-minitest", vim.log.levels.INFO)
 end, { desc = "Reload neotest-ruby-minitest plugin" })
 vim.keymap.set("n", "<leader>lf", function() vim.lsp.buf.format({ async = false }) end, { desc = "Format file with LSP" })
+vim.keymap.set("v", "<leader>lf", function()
+  vim.lsp.buf.format({
+    async = false,
+    range = {
+      start = vim.api.nvim_buf_get_mark(0, "<"),
+      ["end"] = vim.api.nvim_buf_get_mark(0, ">"),
+    },
+  })
+end, { desc = "Format selection with LSP" })
 vim.keymap.set("n", "<leader>fl", function()
   local current_line = vim.fn.line(".")
   local current_col = vim.fn.col(".")
