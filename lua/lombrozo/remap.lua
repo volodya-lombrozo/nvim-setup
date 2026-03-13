@@ -79,3 +79,6 @@ vim.keymap.set('n', ']q', ':cnext<CR>', { silent = true })
 vim.keymap.set('n', '[q', ':cprev<CR>', { silent = true })
 vim.keymap.set('n', ']l', ':lnext<CR>', { silent = true })
 vim.keymap.set('n', '[l', ':lprev<CR>', { silent = true })
+
+-- Git Blame
+vim.keymap.set('n', '<leader>gb', ':GitBlameToggle<CR>', { desc = 'Toggle Git Blame' })
