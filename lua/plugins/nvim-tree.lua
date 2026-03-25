@@ -5,8 +5,12 @@ return {
       "nvim-tree/nvim-web-devicons",
     },
     config = function()
+      -- local function get_tree_width()
+      --   return math.floor(math.max(25, math.min(50, vim.fn.winwidth(0) / 5)))
+      -- end
+
       local function get_tree_width()
-        return math.floor(math.max(25, math.min(50, vim.fn.winwidth(0) / 5)))
+        return vim.fn.winwidth(0)
       end
 
       require("nvim-tree").setup({
