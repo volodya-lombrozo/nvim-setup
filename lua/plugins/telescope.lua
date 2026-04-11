@@ -5,6 +5,9 @@ return {
     branch = 'master',
     lazy = false,
     dependencies = { 'nvim-lua/plenary.nvim' },
+    defaults = {
+      path_display = { "smart" },
+    },
     keys = {
       { "<leader>ff", function() require("telescope.builtin").find_files() end,          desc = "Telescope find files" },
       { "<leader>fg", function() require("telescope.builtin").live_grep() end,           desc = "Telescope live grep" },

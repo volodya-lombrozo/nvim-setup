@@ -87,7 +87,6 @@ return {
                 .. "```\n"
                 .. file_full
                 .. "\n```\n\n"
-            gp.logger.info("Implementing selection with agent: " .. agent.name)
             gp.Prompt(
               params,
               gp.Target.vnew,
